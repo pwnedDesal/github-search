@@ -148,11 +148,15 @@ sys.stdout.write( '[+] running %d threads.\n' %  threads )
 
 time.sleep( 1 )
 
-pool = Pool( threads )
-pool.map( githubApiSearchCode, t_urls )
-pool.close()
-pool.join()
-
+# pool = Pool( threads )
+# pool.map( githubApiSearchCode, t_urls )
+# pool.close()
+# pool.join()
+for key in t_urls:
+    githubApiSearchCode(key)
+    time.sleep(1.5)
+    #debug
+    print('debug:',key)
 for org in t_orgs:
     print( '>>>>> %s\n' % org )
     for url in t_results[org]:
